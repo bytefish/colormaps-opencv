@@ -26,8 +26,16 @@ using namespace std;
 void save_image(const string filename, const Mat& src, int colormap);
 
 int main(int argc, const char *argv[]) {
+    // Get the path to the image, if it was given
+    // if no arguments were given.
+    string filename;
+    if (argc > 1) {
+        filename = string(argv[1]);
+    }
+
     // The following lines generate the color scales for
-    // the
+    // the available colormaps. Once you have added your
+    // own colormap, please extend the demo here as well!
     Mat img1 = Mat::zeros(30, 256, CV_8UC1);
 	for(int i = 0; i < 256; i++) {
 		Mat roi = Mat(img1, Range::all(), Range(i,i+1));
@@ -49,16 +57,19 @@ int main(int argc, const char *argv[]) {
 	save_image(prefix + string("hot.jpg"), img1, COLORMAP_HOT);
 
 	// The following lines show how to apply a colormap on a given image
-	// and show it with cv::imshow example with an image
-    Mat img0 = imread("img/lena.jpg");
-    if(img0.empty()) {
-        CV_Error(CV_StsBadArg, "The sample image for this demo seems to be empty. Please adjust your path to point to a valid image!");
-    }
-    Mat cm_img0;
-    applyColorMap(img0, cm_img0, COLORMAP_JET);
-    imshow("cm_img0", cm_img0);
+	// and show it with cv::imshow example with an image. An exception is
+	// thrown if the path to the image is invalid.
+	if(!filename.empty()) {
+        Mat img0 = imread(filename);
+        if(img0.empty()) {
+            CV_Error(CV_StsBadArg, "Sample image is empty. Please adjust your path, so it points to a valid input image!");
+        }
+        Mat cm_img0;
+        applyColorMap(img0, cm_img0, COLORMAP_JET);
+        imshow("cm_img0", cm_img0);
 
-    waitKey(0);
+        waitKey(0);
+	}
 
 	return 0; // success!
 }
