@@ -2,7 +2,9 @@
 
 ## Description ##
 
-This repository implements colormaps for use in OpenCV. Currently the following GNU Octave/MATLAB equivalent colormaps are implemented:
+This repository implements colormaps for use in OpenCV. This version now has the same interface as the colormaps in OpenCV 2.4+, so supporting multiple versions of OpenCV is easier. 
+
+Currently the following GNU Octave/MATLAB equivalent colormaps are implemented:
 
 * Autumn
 * Bone
