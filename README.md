@@ -34,14 +34,26 @@ void applyColorMap(InputArray src, OutputArray dst, int colormap)
 So the following line reads an image and applies a Jet colormap on it:
 
 ```cpp
+// You need to include the colormap of course:
+#include "colormap.hpp"
+
+// Use the cv namespace:
+using namespace cv;
+
+// Read a sample image:
 string filename = "/path/to/some/file";
 Mat img0 = imread(filename);
 if(img0.empty()) {
     CV_Error(CV_StsBadArg, "The sample image for this demo seems to be empty. Please adjust your path to point to a valid image!");
 }
+
+// Apply the colormap:
 Mat cm_img0;
 applyColorMap(img0, cm_img0, COLORMAP_JET);
 imshow("cm_img0", cm_img0);
+
+// Show the result:
+waitKey(0);
 ```
 
 The available colormaps are:
