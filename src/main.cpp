@@ -17,11 +17,9 @@
  */
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
-#include <iostream>
 #include "colormap.hpp"
 
 using namespace cv;
-using namespace std;
 
 void save_image(const string filename, const Mat& src, int colormap);
 

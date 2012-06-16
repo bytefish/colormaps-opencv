@@ -34,26 +34,37 @@ void applyColorMap(InputArray src, OutputArray dst, int colormap)
 So the following line reads an image and applies a Jet colormap on it:
 
 ```cpp
-// You'll need to include the colormaps of course:
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
 #include "colormap.hpp"
 
-// Use the cv namespace:
 using namespace cv;
 
-// Read a sample image:
-string filename = "/path/to/some/file";
-Mat img0 = imread(filename);
-if(img0.empty()) {
-    CV_Error(CV_StsBadArg, "The sample image for this demo seems to be empty. Please adjust your path to point to a valid image!");
+int main(int argc, const char *argv[]) {
+    // Get the path to the image, if it was given
+    // if no arguments were given.
+    string filename;
+    if (argc > 1) {
+        filename = string(argv[1]);
+    }
+
+	// The following lines show how to apply a colormap on a given image
+	// and show it with cv::imshow example with an image. An exception is
+	// thrown if the path to the image is invalid.
+	if(!filename.empty()) {
+        Mat img0 = imread(filename);
+        if(img0.empty()) {
+            CV_Error(CV_StsBadArg, "Sample image is empty. Please adjust your path, so it points to a valid input image!");
+        }
+        Mat cm_img0;
+        applyColorMap(img0, cm_img0, COLORMAP_JET);
+        imshow("cm_img0", cm_img0);
+
+        waitKey(0);
+	}
+
+	return 0;
 }
-
-// Apply the colormap:
-Mat cm_img0;
-applyColorMap(img0, cm_img0, COLORMAP_JET);
-imshow("cm_img0", cm_img0);
-
-// Show the result:
-waitKey(0);
 ```
 
 The available colormaps are:
