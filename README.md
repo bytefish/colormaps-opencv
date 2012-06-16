@@ -34,7 +34,7 @@ void applyColorMap(InputArray src, OutputArray dst, int colormap)
 So the following line reads an image and applies a Jet colormap on it:
 
 ```cpp
-// You need to include the colormap of course:
+// You'll need to include the colormaps of course:
 #include "colormap.hpp"
 
 // Use the cv namespace:
