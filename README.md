@@ -31,7 +31,7 @@ You only need `applyColorMap` to apply a colormap on a given image:
 void applyColorMap(InputArray src, OutputArray dst, int colormap)
 ```
 
-So the following line reads an image and applies a Jet colormap on it:
+The following sample code reads the path to an image from command line, applies a Jet colormap on it and shows the result:
 
 ```cpp
 #include <opencv2/core/core.hpp>
@@ -47,19 +47,21 @@ int main(int argc, const char *argv[]) {
     if (argc > 1) {
         filename = string(argv[1]);
     }
-
 	// The following lines show how to apply a colormap on a given image
 	// and show it with cv::imshow example with an image. An exception is
 	// thrown if the path to the image is invalid.
 	if(!filename.empty()) {
         Mat img0 = imread(filename);
+        // Throw an exception, if the image can't be read:
         if(img0.empty()) {
             CV_Error(CV_StsBadArg, "Sample image is empty. Please adjust your path, so it points to a valid input image!");
         }
+        // Holds the colormap version of the image:
         Mat cm_img0;
+        // Apply the colormap:
         applyColorMap(img0, cm_img0, COLORMAP_JET);
+        // Show the result:
         imshow("cm_img0", cm_img0);
-
         waitKey(0);
 	}
 
