@@ -1,0 +1,7 @@
+project( colormapscv )
+cmake_minimum_required( VERSION 2.6 )
+find_package( OpenCV REQUIRED )
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+file(GLOB SRC_FILES "src/*.cpp")
+add_executable( cm_demo ${SRC_FILES} )
+target_link_libraries( cm_demo opencv_core opencv_imgproc opencv_highgui)
