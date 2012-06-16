@@ -67,7 +67,7 @@ enum
 Please have a look at the demo, to see the colormaps in action and learn how to use the colormaps. If you want to apply a Jet colormap on a given image, then call the demo with:
 
 ```
-./cm_demo /path/to/your/image
+./cm_demo /path/to/your/image.ext
 ```
 
 Or if you just want to generate the color scales, then call the demo with:
